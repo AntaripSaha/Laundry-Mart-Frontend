@@ -12,7 +12,8 @@ import filters from './plugins/filters'
 import { setupI18n } from './utils/i18n'
 import UUID from 'vue3-uuid'
 import tinycolor from 'tinycolor2'
-
+import vue3PhotoPreview from 'vue3-photo-preview';
+import 'vue3-photo-preview/dist/index.css';
 
 let app = createApp(App);
 
@@ -38,6 +39,7 @@ let app = createApp(App);
     app.use(i18n)
     app.use(UUID)
     app.use(VueGeolocation)
+    app.use(vue3PhotoPreview)
     app.use(GMaps, {
         load: {
             apiKey: settings.data['google_maps_key'],

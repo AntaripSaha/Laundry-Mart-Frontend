@@ -6,7 +6,7 @@
       <h2 class='text-xl font-bold text-second-color-600 mb-4 '>{{ $t('Galleries') }}</h2>
 
       <ul class='grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8' role='list'>
-        <li v-for='image in media' :key='image.id' class='relative'>
+        <!-- <li v-for='image in media' :key='image.id' class='relative'>
           <div
             class='group block w-full aspect-w-10 aspect-h-8 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-main-color-500 overflow-hidden'>
             <img :src='image.thumb' alt='' class='object-cover pointer-events-none group-hover:opacity-75' />
@@ -15,7 +15,12 @@
             </button>
           </div>
           <p class='mt-2 block text-sm font-medium text-second-color-600 truncate pointer-events-none'>{{ image.name }}</p>
-        </li>
+        </li> -->
+        <photo-provider>
+          <photo-consumer v-for="image in media" :intro="image.name" :key="image.id" :src="image.url">
+            <img :src="image.thumb" class="w-full custom-img-height aspect-w aspect-h-8 rounded-lg object-cover">
+          </photo-consumer>
+        </photo-provider>
       </ul>
 
     </div>
@@ -33,3 +38,9 @@ export default {
 
 }
 </script>
+<style>
+  .custom-img-height{
+    height: 130px;
+    width: auto;
+  }
+</style>
