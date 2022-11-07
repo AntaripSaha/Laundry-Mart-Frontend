@@ -130,7 +130,7 @@ import { ChevronRightIcon, PlusIcon } from '@heroicons/vue/outline'
 import { mapActions, mapState, mapGetters } from 'vuex'
 import BookingDate from './partial/booking_date.vue'
 import Quantity from '../e_service/partial/quantity.vue'
-import MyAddresses from '../header/my_addresses.vue'
+import MyAddresses from '../header/my_addresses_modified.vue'
 
 
 export default {
