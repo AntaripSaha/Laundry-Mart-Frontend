@@ -89,6 +89,19 @@ export default {
             }
             return { type: 'error', title: 'Error', message: response.data.message }
         },
+       async storeAddressAction({ commit, getters }, address) {
+            if(address){
+                let queryParameters = {
+                    'api_token': getters.getUser.api_token,
+                }
+                const response = await this.$axios.post(`address/store/new/${getters.getUser.id}`, address, { params: queryParameters } )
+                if (response.status === 200 && response.data?.success) {
+                    return { type: 'success', title: 'Saved Successfully', message: 'Your Address has been updated successfully' }
+                }
+                return { type: 'error', title: 'Error', message: response.data.message }
+            }
+            commit('UPDATE_ADDRESS', address)
+        },
 
         logoutAction({ commit }) {
             commit('UPDATE_USER', {})
@@ -122,9 +135,11 @@ export default {
             })
         },
 
-        setCurrentAddressAction({ commit }, address) {
+        setCurrentAddressAction({ commit, getters }, address) {
             commit('UPDATE_ADDRESS', address)
+            
         },
+
 
         toggleAddressPickerAction({ state, commit }) {
             if (state.newAddress === undefined) {
@@ -149,8 +164,6 @@ export default {
         setNewUserAction({ state, commit }, user) {
             console.log(user)
             commit('UPDATE_NEW_USER', user)
-        },
-
-
+        }
     },
 }

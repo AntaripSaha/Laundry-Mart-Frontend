@@ -16,13 +16,11 @@
                          class='w-4 h-4 text-main-color-600 border-gray-300 focus:ring-main-color-500'
                          name='address' type='radio' />
                 </div>
-                <div  class='px-6 text-sm'>
-                  <label class='font-medium text-second-color-600' for='address'>
-                    {{ booking.address.description }}
-                    <span id='address-description' class='block font-normal text-gray-500'>
-                      {{ booking.address.address }}
-                    </span>
-                  </label>
+                <div class='px-6 ml-8' >
+                  {{ getAddress.description }}
+                </div>
+                <div class="absolute right-0 ">
+                  <MyAddresses />
                 </div>
               </div>
             </div>
@@ -34,7 +32,7 @@
           <label class='text-sm font-medium text-second-color-600'>
             {{ $t('Your Address') }}
           </label>
-            <MyAddresses />
+            Add Your Address First
         </div>
       </fieldset>
       <!-- Quantity -->
@@ -152,6 +150,7 @@ export default {
     ...mapGetters('bookEService', [
       'canMakeBooking',
     ]),
+    ...mapGetters('user', ['getAddress']),
 
   },
   methods: {

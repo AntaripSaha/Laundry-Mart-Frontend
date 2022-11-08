@@ -2,10 +2,13 @@
   <Popover v-slot='{ open }' class='relative'>
     <PopoverButton
       :class="[open ? 'text-second-color-900' : 'text-second-color-500', 'group inline-flex items-center text-sm focus:outline-none text-second-color-500 hover:text-second-color-900']">
-      <span>{{ getAddress.description || $t('Select Your Address') }}</span>
-      <LocationMarkerIcon :class="[open ? 'text-second-color-900' : 'text-second-color-500', 'ml-2 h-6 w-6 group-hover:text-second-color-900']"
-                          aria-hidden='true' />
+      <span>
+        <h4 class="text-red-400/100" style="color: #3585a4 !important; font-weight: 700 !important">
+          Change
+        </h4>        
+      </span>
     </PopoverButton>
+
     <transition enter-active-class='transition duration-200 ease-out' enter-from-class='opacity-0 translate-y-1' enter-to-class='opacity-100 translate-y-0'
                 leave-active-class='transition duration-150 ease-in' leave-from-class='opacity-100 translate-y-0' leave-to-class='opacity-0 translate-y-1'>
       <PopoverPanel v-slot='{ close }'
@@ -23,7 +26,6 @@
                   </p>
                 </div>
               </div>
-
               <p class='mt-1 text-sm text-second-color-600'>
                 {{ address.address }}
               </p>

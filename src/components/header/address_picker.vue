@@ -41,14 +41,14 @@
                     </div>
                   </div>
                   <div>
-                    <label class='block text-sm font-medium text-gray-700' for='street-address'>
+                    <!-- <label class='block text-sm font-medium text-gray-700' for='street-address'>
                       {{ $t('Full Address') }}
-                    </label>
+                    </label> -->
                     <div class='mt-1'>
                       <input id='address' :placeholder='$t("123 Street, City, Country")' :value='newAddress?.address' autocomplete='address'
                              class='shadow-sm focus:ring-main-color-500 focus:border-main-color-500 block w-full sm:text-sm border-gray-300 rounded-md'
                              name='address'
-                             type='text'
+                             type='hidden'
                              @input='updateFullAddress'
                       />
                     </div>
@@ -87,7 +87,8 @@
                     <button
                       class='ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-main-color-600 hover:bg-main-color-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-color-500'
                       type='button'
-                      @click='this.setCurrentAddressAction(this.newAddress); toggleAddressPickerAction(); '>
+                      @click=handelAddress>
+                      
                       {{ $t('Save') }}
                     </button>
                   </div>
@@ -119,7 +120,6 @@ export default {
     ChevronLeftIcon,
     PlaceSearch,
   },
-
   computed: {
     ...mapState('user', {
       newAddress: state => state.newAddress,
@@ -129,7 +129,8 @@ export default {
     ...mapGetters('user', ['getUser']),
   },
   methods: {
-    ...mapActions('user', ['toggleAddressPickerAction', 'setNewAddressAction', 'setCurrentAddressAction']),
+    ...mapActions('user', ['toggleAddressPickerAction', 'setNewAddressAction', 'setCurrentAddressAction','storeAddressAction']),
+    ...mapActions('snackbar', ['toggleSnackBarAction']),
     updateFullAddress(e) {
       this.newAddress.address = e.target.value
       this.setNewAddressAction(this.newAddress)
@@ -146,6 +147,15 @@ export default {
       this.newAddress.longitude = place.lng
       this.setNewAddressAction(this.newAddress)
     },
+    handelAddress(){
+      this.setCurrentAddressAction(this.newAddress);
+      this.storeAddressAction(this.newAddress).then((result) => {
+        this.toggleSnackBarAction(result)
+        this.toggleAddressPickerAction()
+      });
+      
+      // this.toggleAddressPickerAction(); 
+    }
   },
 }
 

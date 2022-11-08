@@ -30,7 +30,6 @@ const routes = [
     { path: '/bookings/:action/native/:id', name: 'Native', component: Bookings, meta: { requiresAuth: true } },
     { path: '/help/:id?', name: 'Help', component: Help },
     { path: '/pages/:id', name: 'CustomPage', component: CustomPage },
-
 ]
 
 export const createRouter = (app) => {
