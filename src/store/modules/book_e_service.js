@@ -30,7 +30,6 @@ export default {
     },
 
     actions: {
-
         async addBookingAction({ commit, rootGetters }, booking) {
             if (!rootGetters['user/isAuth']) return { type: 'error', title: 'Permission denied', message: 'Not authorized' }
 
@@ -44,7 +43,6 @@ export default {
                 return { type: 'success', title: 'Saved successfully', message: 'Your booking has been saved successfully' }
             }
             return { type: 'error', title: 'Error', message: response.data?.message }
-
         },
 
         async validateCouponAction({ commit, rootGetters }, booking) {

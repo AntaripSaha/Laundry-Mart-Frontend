@@ -147,6 +147,7 @@
 
 <script>
 import { ChevronRightIcon } from '@heroicons/vue/outline'
+import { result } from 'lodash'
 import { mapActions, mapState, mapGetters } from 'vuex'
 
 
@@ -173,7 +174,14 @@ export default {
           this.$router.push({ name: 'BookEService', params: { action: 'success', id: this.$route.params.id } })
         }
         this.toggleSnackBarAction(result)
+        // var value1 = result.type
+        // var value2 =  result.title
+        // var value3 =  result.message[0]
 
+        // var allValue = value1 + value2 + value3
+
+        // console.log('error msg: ', allValue )
+        // this.toggleSnackBarAction(result.message[0])
       })
     },
   },

@@ -3,7 +3,7 @@
 
     <div class='py-6 space-y-8 sm:py-8 sm:space-y-0 sm:divide-y sm:divide-gray-100'>
       <!-- Address -->
-      <fieldset  v-if="booking.address.description">
+      <fieldset  v-if="this.addresses">
         <div class='px-4 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:px-6 sm:py-5'>
           <label class='text-sm font-medium text-second-color-600'>
             {{ $t('Your Address') }}
@@ -146,6 +146,10 @@ export default {
   computed: {
     ...mapState('bookEService', {
       booking: state => state.booking,
+    }),
+    ...mapState('user', {
+      addresses: state => state.addresses,
+      address: state => state.address,
     }),
     ...mapGetters('bookEService', [
       'canMakeBooking',

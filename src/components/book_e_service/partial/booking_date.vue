@@ -2,6 +2,7 @@
   <div class='flex'>
     <litepie-datepicker id='bookingAt'
                         ref='litepieRef'
+                        aria-required="true"
                         v-model='dateValue'
                         as-single
                         @click='litepieRef.isShow = !litepieRef.isShow'
